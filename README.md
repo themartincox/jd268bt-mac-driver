@@ -90,8 +90,16 @@ image). Try printing again; if it happens often, try slowing things down
 further by editing `CHUNK_SIZE` / `CHUNK_DELAY` at the top of `bridge.py`
 (smaller/slower is more reliable, at the cost of print speed).
 
-**"Timed out opening RFCOMM channel."** The printer is off, asleep, or out
-of range. Wake/power-cycle it and try again.
+**"Timed out opening RFCOMM channel."** Two possible causes:
+- The printer is off, asleep, or out of range — wake/power-cycle it and
+  try again.
+- Its Bluetooth pairing has gotten out of sync with your Mac (this
+  happens most often right after a power cycle) — macOS still shows it as
+  "connected", but the printer silently ignores connection attempts. Fix
+  it by re-pairing from scratch:
+  ```bash
+  ./repair.sh
+  ```
 
 **The bridge isn't running.** Check with
 `ps aux | grep bridge.py`. Restart it by double-clicking
